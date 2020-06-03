@@ -1,24 +1,11 @@
-import express from 'express';
+import express from 'express'
+import routes from './routes'
+import path from 'path'
 
 const app = express();
+app.use(express.json());
+app.use(routes);
+app.use('/uploads', express.static(path.resolve(__dirname, '..', 'uploads')))
 
-
-//rota get, parametro 1 = rota, parametro 2 = função
-
-// (parametro', parametro1, ...) => { expreções }     é semelhante a: function (parametro1...){return ( expreções)}
-// É chamado Arrow Function
-
-app.get('/users', (request, response) => {
-    response.json([
-        'mateus'
-
-    ])
-
-});
-
-app.get('/teste', (request, response) => {
-    response.send('You are in the "teste" route')
-
-});
 
 app.listen(3333);
